@@ -131,16 +131,16 @@
                 android:text="@string/valcbdeportes" />
 
             <CheckBox
-                android:id="@+id/cbotros"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/valcbotros" />
-
-            <CheckBox
                 android:id="@+id/cbmusica"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/valcbmusica" />
+
+            <CheckBox
+                android:id="@+id/cbotros"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/valcbotros" />
         </LinearLayout>
 
         <TextView
