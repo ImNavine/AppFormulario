@@ -3,6 +3,7 @@ package pe.edu.idat.appformularios
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -23,6 +24,7 @@ class RegistroActivity : AppCompatActivity(), View.OnClickListener,
         super.onCreate(savedInstanceState)
         binding = ActivityRegistroBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        Log.i("MensajeInfo", "App Inicializada")
         binding.btnlistar.setOnClickListener(this)
         binding.btnregistrar.setOnClickListener(this)
 
@@ -31,6 +33,9 @@ class RegistroActivity : AppCompatActivity(), View.OnClickListener,
             binding.spestadocivil.adapter=adapter
         }
         binding.spestadocivil.onItemSelectedListener=this
+        binding.cbdeportes.setOnClickListener(this)
+        binding.cbmusica.setOnClickListener(this)
+        binding.cbotros.setOnClickListener(this)
     }
     override fun onClick(vista: View) {
         if (vista is CheckBox) {
@@ -67,13 +72,21 @@ class RegistroActivity : AppCompatActivity(), View.OnClickListener,
     fun registrarPersona(){
         if (validarFormulario()){
             val infoPersona = binding.etnombres.text.toString() + " "+ binding.etapellidos.text.toString()+" "+
-                    obtenerGeneroSeleccionado()+ " "+ listaPreferencias.toArray()+ " "+estadocivil+ " "+
+                    obtenerGeneroSeleccionado()+ " "+ obtenerPreferencias()+ " "+estadocivil+ " "+
                     binding.swnotificacion.isChecked
             listaPersonas.add(infoPersona)
             AppMensaje.enviarMensaje(binding.root, getString(R.string.mensajeRegistroCorrecto), TipoMensaje.SUCCESSFULL)
 
             setearControles()
         }
+    }
+
+    private fun obtenerPreferencias() :String{
+        var preferencias =""
+        for (pref in listaPreferencias){
+            preferencias += "$pref -"
+        }
+        return preferencias
     }
 
     private fun setearControles() {

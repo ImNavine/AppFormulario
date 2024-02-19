@@ -12,10 +12,11 @@ object AppMensaje {
         val snackBarView: View = snackBar.view
 
         if(tipoMensaje==TipoMensaje.ERROR){
-            snackBarView.setBackgroundColor(ContextCompat.getColor(MiApp.instance, R.color.errorColor))
+            snackBar.setBackgroundTint(ContextCompat.getColor(MiApp.instance, R.color.errorColor))
+
         }
         else{
-            snackBarView.setBackgroundColor(ContextCompat.getColor(MiApp.instance, R.color.exitoColor))
+            snackBar.setBackgroundTint(ContextCompat.getColor(MiApp.instance, R.color.exitoColor))
         }
         snackBar.show()
     }
